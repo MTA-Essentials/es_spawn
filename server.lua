@@ -40,7 +40,6 @@ addEventHandler(
     'onPlayerWasted',
     root,
     function()
-        print('huh')
         local player = source
         local px, py, pz = getElementPosition(player)
 
