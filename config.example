@@ -1,7 +1,5 @@
 config = {}
-config.spawn = 'static' -- {"random", "last", "static"}
-config.static = {x = 0, y = 0, z = 4, r = 0, d = 0, i = 0}
-config.random = {
-    {x = 0, y = 0, z = 0, r = 0, d = 0, i = 0}
+config.spawns = {
     -- {x = 0, y = 0, z = 0, r = 0, d = 0, i = 0}
+    {x = 0, y = 0, z = 0, r = 0, d = 0, i = 0}
 }
