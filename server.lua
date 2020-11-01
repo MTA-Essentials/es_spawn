@@ -1,3 +1,16 @@
+addEventHandler(
+    'onResourceStart',
+    resourceRoot,
+    function()
+        local list = {
+            {'lastLocation', 'local', toJSON({x = 0, y = 0, z = 4, r = 0, i = 0, d = 0})}
+        }
+        for i, v in ipairs(list) do
+            triggerEvent('onRegisterData', resourceRoot, v[1], v[2], v[3])
+        end
+    end
+)
+
 addEvent('onUserSpawn', true)
 addEventHandler(
     'onUserSpawn',
@@ -5,11 +18,6 @@ addEventHandler(
     function()
         local player = client
         local pos = getElementData(player, 'lastLocation')
-        if pos then
-            pos = fromJSON(pos)
-        else
-            pos = {x = 0, y = 0, z = 4, r = 0, i = 0, d = 0}
-        end
         spawnPlayer(player, pos.x, pos.y, pos.z, pos.r)
         setCameraTarget(player, player)
         setElementInterior(player, pos.i)
