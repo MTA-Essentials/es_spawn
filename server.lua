@@ -1,16 +1,3 @@
-addEventHandler(
-    'onResourceStart',
-    resourceRoot,
-    function()
-        local list = {
-            {'lastLocation', 'local', toJSON({x = 0, y = 0, z = 4, r = 0, i = 0, d = 0})}
-        }
-        for i, v in ipairs(list) do
-            triggerEvent('onRegisterData', resourceRoot, v[1], v[2], v[3])
-        end
-    end
-)
-
 addEvent('onUserSpawn', true)
 addEventHandler(
     'onUserSpawn',
