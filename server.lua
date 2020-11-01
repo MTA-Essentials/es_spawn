@@ -18,6 +18,7 @@ addEventHandler(
     function()
         local player = client
         local pos = getElementData(player, 'lastLocation')
+        pos = fromJSON(pos)
         spawnPlayer(player, pos.x, pos.y, pos.z, pos.r)
         setCameraTarget(player, player)
         setElementInterior(player, pos.i)
