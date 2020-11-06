@@ -91,3 +91,45 @@ addEventHandler(
         )
     end
 )
+
+addEvent('onPlayerRespawn')
+addEventHandler(
+    'onPlayerRespawn',
+    root,
+    function(player)
+        local px, py, pz = getElementPosition(player)
+        local result = {}
+        for i, v in ipairs(config.spawns) do
+            result[#result + 1] = getDistanceBetweenPoints3D(px, py, pz, v.x, v.y, v.z)
+        end
+
+        local lowestIndex = 0
+        local lowestValue = false
+        for i, v in ipairs(result) do
+            if not lowestValue or v < lowestValue then
+                lowestIndex = i
+                lowestValue = v
+            end
+        end
+
+        local pos = config.spawns[lowestIndex]
+        fadeCamera(player, false)
+        setTimer(
+            function()
+                spawnPlayer(player, pos.x, pos.y, pos.z, pos.r)
+                setCameraTarget(player, player)
+                setElementInterior(player, pos.i)
+                setElementDimension(player, pos.d)
+            end,
+            1100,
+            1
+        )
+        setTimer(
+            function()
+                fadeCamera(player, true)
+            end,
+            2100,
+            1
+        )
+    end
+)
