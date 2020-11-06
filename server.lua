@@ -50,8 +50,12 @@ addEventHandler(
     root,
     function()
         local player = source
-        local px, py, pz = getElementPosition(player)
 
+        if getElementData(player, 'disableAutoRespawn') then
+            return
+        end
+
+        local px, py, pz = getElementPosition(player)
         local result = {}
         for i, v in ipairs(config.spawns) do
             result[#result + 1] = getDistanceBetweenPoints3D(px, py, pz, v.x, v.y, v.z)
