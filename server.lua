@@ -11,14 +11,17 @@ addEventHandler(
     end
 )
 
-addEvent('onUserSpawn', true)
+addEvent('onPlayerLoading', true)
 addEventHandler(
-    'onUserSpawn',
+    'onPlayerLoading',
     root,
-    function()
-        local player = client
-        local pos = getElementData(player, 'lastLocation')
-        pos = fromJSON(pos)
+    function(player)
+        local pos = getElementData(player, 'position')
+        if pos then
+            pos = fromJSON(pos)
+        else
+            pos = {x = 0, y = 0, z = 4, r = 0, i = 0, d = 0}
+        end
         spawnPlayer(player, pos.x, pos.y, pos.z, pos.r)
         setCameraTarget(player, player)
         setElementInterior(player, pos.i)
@@ -26,8 +29,9 @@ addEventHandler(
         setTimer(
             function()
                 fadeCamera(player, true)
+                triggerClientEvent(player, 'onPlayerLoginClose', resourceRoot)
             end,
-            2100,
+            1000,
             1
         )
     end
