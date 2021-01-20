@@ -11,7 +11,6 @@ addEventHandler(
     end
 )
 
-addEvent('onPlayerLoading', true)
 addEventHandler(
     'onPlayerLoading',
     root,
