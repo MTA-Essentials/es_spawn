@@ -1,4 +1,17 @@
 addEventHandler(
+    'onResourceStart',
+    resourceRoot,
+    function()
+        local list = {
+            {'position', 'json', toJSON({x = 0, y = 0, z = 4, r = 0, i = 0, d = 0})},
+        }
+        for i, v in ipairs(list) do
+            triggerEvent('onElementDataRegister', resourceRoot, v[1], v[2], v[3], v[4])
+        end
+    end
+)
+
+addEventHandler(
     'onPlayerLoading',
     root,
     function(player)
@@ -31,7 +44,7 @@ addEventHandler(
         local px, py, pz = getElementPosition(player)
         local rx, ry, rz = getElementRotation(player)
         local pi, pd = getElementInterior(player), getElementDimension(player)
-        setElementData(player, 'lastLocation', toJSON({x = px, y = py, z = pz, r = rz, i = pi, d = pd}))
+        setElementData(player, 'position', toJSON({x = px, y = py, z = pz, r = rz, i = pi, d = pd}))
     end
 )
 
