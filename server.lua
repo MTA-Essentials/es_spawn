@@ -12,7 +12,7 @@ addEventHandler(
 )
 
 addEventHandler(
-    'onPlayerLoading',
+    'onPlayerLoaded',
     root,
     function(player)
         local pos = getElementData(player, 'position')
